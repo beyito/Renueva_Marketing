@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle - ReNueva</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Re<span>Nuev</span>a</div>
+            <div class="nav-links">
+                <a href="index.html">← Volver al Catálogo</a>
+                <a href="cart.html" class="cart-icon-container">
+                    🛒 <span id="cart-count" class="cart-badge">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="detail-container">
+        <div id="detail-img" class="detail-image"></div>
+
+        <div class="detail-info">
+            <span id="detail-category" class="detail-meta">Categoría</span>
+            <h1 id="detail-name">Cargando...</h1>
+            <span id="detail-price" class="detail-price">-- Bs.</span>
+
+            <p style="line-height: 1.8; color: #555;">
+                Esta prenda ha pasado por nuestro riguroso proceso de selección y mantenimiento. 
+                Garantizamos que está limpia, desinfectada y lista para su uso inmediato.
+            </p>
+
+            <div class="production-history">
+                <h4>🛠️ Informe de Mantenimiento</h4>
+                <p><strong>Estado Visual:</strong> <span id="detail-condition">...</span></p>
+                <p><strong>Trabajo Realizado:</strong> <span id="detail-repairs" style="color:var(--accent); font-weight:bold;">...</span></p>
+            </div>
+
+            <button id="detail-add-btn" class="btn-checkout" style="margin-top:0;">AÑADIR AL CARRITO</button>
+            
+            <div style="margin-top: 20px; font-size: 0.8rem; color: #888; display: flex; gap: 15px;">
+                <span>🚚 Envío en 24h</span>
+                <span>✅ Garantía de Devolución</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
