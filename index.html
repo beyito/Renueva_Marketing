@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renueva - Moda Circular con Garantía</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script> ```
 </head>
 <body>
 
@@ -12,6 +13,10 @@
         <nav>
             <div class="logo">Re<span>Nuev</span>a</div>
             <div class="nav-links">
+                <a href="cart.html" class="cart-icon-container">
+                🛒 <span id="cart-count" class="cart-badge">0</span>
+                </a>
+    
                 <a href="#catalogo">Comprar Ropa</a>
                 <a href="#vender">Vender mi Ropa</a>
                 
@@ -67,7 +72,7 @@
                     <span class="product-price">120 Bs.</span>
                     <h3>Camisa Lino Blanca</h3>
                     <p style="font-size: 0.8rem; color: green; margin:0;">✔ Botón repuesto por expertos</p>
-                    <button class="btn-add" onclick="alert('Añadido')">Añadir al Carrito</button>
+                    <button class="btn-add" onclick="addToCart('Camisa Lino Blanca', 120, 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">Añadir al Carrito</button>
                 </div>
             </div>
 
@@ -80,7 +85,7 @@
                     <span class="product-price">180 Bs.</span>
                     <h3>Chaqueta Denim</h3>
                     <p style="font-size: 0.8rem; color: green; margin:0;">✔ Sin manchas ni olores</p>
-                    <button class="btn-add" onclick="alert('Añadido')">Añadir al Carrito</button>
+                    <button class="btn-add" onclick="addToCart('Chaqueta Denim', 180, 'https://images.unsplash.com/photo-1551028919-383718b93651?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">Añadir al Carrito</button>
                 </div>
             </div>
 
@@ -93,7 +98,7 @@
                     <span class="product-price">200 Bs.</span>
                     <h3>Jeans Clásicos</h3>
                     <p style="font-size: 0.8rem; color: green; margin:0;">✔ Ruedo reparado</p>
-                    <button class="btn-add" onclick="alert('Añadido')">Añadir al Carrito</button>
+                    <button class="btn-add" onclick="addToCart('Jeans Clásicos', 200, 'https://images.unsplash.com/photo-1589810636490-ce065e9d2243?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">Añadir al Carrito</button>
                 </div>
             </div>
              <div class="product-card">
@@ -105,7 +110,7 @@
                     <span class="product-price">85 Bs.</span>
                     <h3>Blusa Floral</h3>
                     <p style="font-size: 0.8rem; color: green; margin:0;">✔ Higienizado Profesional</p>
-                    <button class="btn-add" onclick="alert('Añadido')">Añadir al Carrito</button>
+                    <button class="btn-add" onclick="addToCart('Blusa Floral', 85, 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">Añadir al Carrito</button>
                 </div>
             </div>
         </div>

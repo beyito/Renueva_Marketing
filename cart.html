@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito - ReNueva</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body style="background-color: #f8f9fa;">
+
+    <header>
+        <nav>
+            <div class="logo">Re<span>Nuev</span>a</div>
+            <div class="nav-links">
+                <a href="index.html">← Seguir Comprando</a>
+                <a href="cart.html" class="cart-icon-container">
+                    🛒 <span id="cart-count" class="cart-badge">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="cart-page-container">
+        
+        <div class="cart-content">
+            <h2 style="color:var(--primary);">Tu Carrito de Compras</h2>
+            <div id="cart-items-container" class="cart-items">
+                </div>
+        </div>
+
+        <div class="cart-summary">
+            <h3 style="margin-top:0;">Resumen del Pedido</h3>
+            
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">Calculando...</span>
+            </div>
+            <div class="summary-row">
+                <span>Envío</span>
+                <span>15 Bs.</span>
+            </div>
+            
+            <div class="total-row">
+                <span>TOTAL</span>
+                <span id="cart-total">0 Bs.</span>
+            </div>
+
+            <button class="btn-checkout" onclick="alert('¡Gracias por tu compra! (Esto es un prototipo)')">FINALIZAR COMPRA</button>
+            <p style="font-size:0.8rem; text-align:center; color:#888; margin-top:10px;">🔒 Pago seguro contra entrega</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

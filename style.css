@@ -363,3 +363,114 @@ footer p { margin: 5px 0; }
     background-color: var(--primary);
     color: var(--white) !important; /* Al pasar el mouse se llena de color */
 }
+
+/* --- 9. ESTILOS DEL CARRITO (CHECKOUT) --- */
+.cart-page-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2 partes lista, 1 parte resumen */
+    gap: 30px;
+}
+
+/* Lista de Productos */
+.cart-items {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 15px;
+}
+
+.cart-info h4 { margin: 0; font-size: 1rem; color: var(--primary); }
+.cart-info .price { margin: 5px 0 0; font-weight: bold; color: var(--accent); }
+
+.btn-remove {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.2s;
+}
+.btn-remove:hover { transform: scale(1.2); }
+
+/* Resumen de Compra */
+.cart-summary {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    height: fit-content;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px dashed #eee;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.btn-checkout {
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.btn-checkout:hover { background-color: #34495e; }
+
+/* Icono del Header */
+.cart-icon-container {
+    position: relative;
+    margin-right: 15px;
+    text-decoration: none !important;
+}
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .cart-page-container { grid-template-columns: 1fr; }
+}
