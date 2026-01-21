@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renueva - Moda Circular con Garantía</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Re<span>Nuev</span>a</div>
+            <div class="nav-links">
+                <a href="#catalogo">Comprar Ropa</a>
+                <a href="#vender">Vender mi Ropa</a>
+                <a href="#">Ingresar</a>
+                <a href="#catalogo" class="btn-cta">Ver Tienda</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Moda de Segunda Mano,<br>Calidad de Primera</h1>
+            <p>Nosotros recogemos, lavamos, reparamos y vendemos tu ropa.<br>Compra con confianza, vende sin esfuerzo.</p>
+            <a href="#vender" class="btn-cta" style="background: white; color: var(--primary) !important;">Quiero Vender (Agendar Recogida)</a>
+        </div>
+    </section>
+
+    <section class="process">
+        <h2>Nuestro Proceso de Calidad Certificada</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="icon">🚛</span>
+                <h3>1. Recogida a Domicilio</h3>
+                <p>Te enviamos una bolsa, tú la llenas y nosotros pasamos a buscarla. Sin salir de casa.</p>
+            </div>
+            <div class="step-card">
+                <span class="icon">🧵</span>
+                <h3>2. Mantenimiento & Spa</h3>
+                <p>Lavamos, planchamos y reparamos. <strong>Tu ropa queda como nueva.</strong></p>
+            </div>
+            <div class="step-card">
+                <span class="icon">📸</span>
+                <h3>3. Foto y Venta</h3>
+                <p>Tomamos fotos profesionales y publicamos. Cuando se vende, recibes tu dinero.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="catalogo" class="catalog">
+        <div class="section-header">
+            <h2>Recién llegados (Listos para envío)</h2>
+            <a href="#">Ver todo el inventario &rarr;</a>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <span class="badge">✨ Lavado y Planchado</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">ZARA - Talla M</span>
+                    <span class="product-price">120 Bs.</span>
+                    <h3>Camisa Lino Blanca</h3>
+                    <p style="font-size: 0.8rem; color: green; margin:0;">✔ Botón repuesto por expertos</p>
+                    <button class="btn-add" onclick="alert('Añadido')">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1551028919-383718b93651?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <span class="badge">💎 Como Nuevo</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">H&M - Talla S</span>
+                    <span class="product-price">180 Bs.</span>
+                    <h3>Chaqueta Denim</h3>
+                    <p style="font-size: 0.8rem; color: green; margin:0;">✔ Sin manchas ni olores</p>
+                    <button class="btn-add" onclick="alert('Añadido')">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1589810636490-ce065e9d2243?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <span class="badge">♻ Restaurado</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">LEVI'S - Talla 32</span>
+                    <span class="product-price">200 Bs.</span>
+                    <h3>Jeans Clásicos</h3>
+                    <p style="font-size: 0.8rem; color: green; margin:0;">✔ Ruedo reparado</p>
+                    <button class="btn-add" onclick="alert('Añadido')">Añadir al Carrito</button>
+                </div>
+            </div>
+             <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <span class="badge">✨ Impecable</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">FOREVER 21 - Talla L</span>
+                    <span class="product-price">85 Bs.</span>
+                    <h3>Blusa Floral</h3>
+                    <p style="font-size: 0.8rem; color: green; margin:0;">✔ Higienizado Profesional</p>
+                    <button class="btn-add" onclick="alert('Añadido')">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vender" class="seller-section">
+        <h2>Libera espacio y gana dinero</h2>
+        <p>Agenda la recogida de tu bolsa. Nosotros nos encargamos del resto.</p>
+        
+        <div class="form-container">
+            <h3 style="color:var(--primary); margin-top:0;">Solicitar Recolección</h3>
+            <form onsubmit="event.preventDefault(); alert('¡Solicitud enviada! Te contactaremos pronto.');">
+                
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" placeholder="Ej. Juan Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label>WhatsApp de Contacto</label>
+                    <input type="tel" placeholder="Ej. 70012345" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Ubicación</label>
+                    <select>
+                        <option>Zona Norte (1er - 4to Anillo)</option>
+                        <option>Zona Sur</option>
+                        <option>Centro</option>
+                        <option>Doble Vía La Guardia</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Cantidad aprox. de prendas</label>
+                    <input type="number" placeholder="Ej. 15" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 ReNueva - Startup de Moda Circular en Bolivia.</p>
+        <p>Proyecto Académico para Producción
