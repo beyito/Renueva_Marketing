@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Panel - ReNueva</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #f4f6f8;"> <header>
+        <nav>
+            <div class="logo">Re<span>Nuev</span>a</div>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="#">Ayuda</a>
+                <div style="display:flex; align-items:center; margin-left:20px;">
+                    <div style="width:35px; height:35px; background:var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-right:10px;">MP</div>
+                    <span style="font-weight:bold;">Hola, María</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        
+        <h2 style="color:var(--primary); margin-bottom:20px;">Resumen de tu cuenta</h2>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Ganancias Totales</span>
+                <span class="stat-number">450 Bs.</span>
+                <small style="color:green;">Disponible para retirar</small>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Prendas Vendidas</span>
+                <span class="stat-number">3</span>
+                <small>De 12 enviadas</small>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">En Proceso</span>
+                <span class="stat-number">8</span>
+                <small>Lavandería / Publicado</small>
+            </div>
+        </div>
+
+        <h3 style="margin-bottom:15px; color:#555;">Trazabilidad de tus Prendas</h3>
+
+        <div class="inventory-list">
+
+            <div class="item-row">
+                <div class="item-thumb" style="background-image: url('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=60');"></div>
+                <div class="item-details">
+                    <span class="item-title">Camisa Lino Blanca (ZARA)</span>
+                    <span class="item-id">ID: #RN-2024-001 | Lote: Enero 15</span>
+                    
+                    <div class="status-timeline">
+                        <div class="status-step active"><div class="status-dot"></div>Recibido</div>
+                        <div class="status-line active-line"></div>
+                        <div class="status-step active"><div class="status-dot"></div>Lavado</div>
+                        <div class="status-line active-line"></div>
+                        <div class="status-step active"><div class="status-dot"></div>Publicado</div>
+                        <div class="status-line active-line"></div>
+                        <div class="status-step active"><div class="status-dot"></div>Vendido</div>
+                    </div>
+                </div>
+                <div style="text-align:right;">
+                    <span class="status-badge sold">¡Vendido!</span>
+                    <p style="margin:5px 0 0; font-weight:bold; color:var(--primary);">+ 60 Bs.</p>
+                    <small>Tu ganancia</small>
+                </div>
+            </div>
+
+            <div class="item-row">
+                <div class="item-thumb" style="background-image: url('https://images.unsplash.com/photo-1551028919-383718b93651?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=60');"></div>
+                <div class="item-details">
+                    <span class="item-title">Chaqueta Denim (H&M)</span>
+                    <span class="item-id">ID: #RN-2024-002 | Lote: Enero 15</span>
+                    
+                    <div class="status-timeline">
+                        <div class="status-step active"><div class="status-dot"></div>Recibido</div>
+                        <div class="status-line active-line"></div>
+                        <div class="status-step active"><div class="status-dot"></div>Lavado</div>
+                        <div class="status-line active-line"></div>
+                        <div class="status-step active"><div class="status-dot"></div>Publicado</div>
+                        <div class="status-line"></div>
+                        <div class="status-step"><div class="status-dot"></div>Vendido</div>
+                    </div>
+                </div>
+                <div style="text-align:right;">
+                    <span class="status-badge processing">En Venta</span>
+                    <p style="margin:5px 0 0; font-weight:bold; color:#999;">--</p>
+                    <small><a href="#" style="color:var(--accent);">Ver publicación</a></small>
+                </div>
+            </div>
+
+            <div class="item-row">
+                <div class="item-thumb" style="background-image: url('https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=60');"></div>
+                <div class="item-details">
+                    <span class="item-title">Blusa Floral (Forever 21)</span>
+                    <span class="item-id">ID: #RN-2024-005 | Lote: Enero 20</span>
+                    
+                    <div class="status-timeline">
+                        <div class="status-step active"><div class="status-dot"></div>Recibido</div>
+                        <div class="status-line active-line"></div>
+                        <div class="status-step active"><div class="status-dot"></div>En Costura</div>
+                        <div class="status-line"></div>
+                        <div class="status-step"><div class="status-dot"></div>Publicado</div>
+                        <div class="status-line"></div>
+                        <div class="status-step"><div class="status-dot"></div>Vendido</div>
+                    </div>
+                </div>
+                <div style="text-align:right;">
+                    <span class="status-badge processing">Mantenimiento</span>
+                    <p style="margin:5px 0 0; font-size:0.8rem; color:#666;">Reponiendo botón...</p>
+                </div>
+            </div>
+
+            <div class="item-row" style="background-color: #fff5f5;">
+                <div class="item-thumb" style="background-color:#eee; display:flex; align-items:center; justify-content:center; color:#999; font-size:0.8rem;">Sin Foto</div>
+                <div class="item-details">
+                    <span class="item-title" style="color:#999;">Pantalón Negro Desconocido</span>
+                    <span class="item-id">ID: #RN-2024-009</span>
+                    <p style="color: #721c24; font-size: 0.9rem; margin: 5px 0;">
+                        ⚠ <strong>No aceptado:</strong> La prenda tiene manchas de aceite permanentes que no salen con el lavado industrial.
+                    </p>
+                </div>
+                <div style="text-align:right;">
+                    <span class="status-badge rejected">Rechazado</span>
+                    <p style="margin:5px 0 0; font-size:0.8rem;"><a href="#" style="text-decoration:underline;">Solicitar devolución</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
