@@ -7,50 +7,27 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
-<body style="background-color: #f8f9fa;">
-
+<body>
     <header>
         <nav>
             <div class="logo">Re<span>Nuev</span>a</div>
-            <div class="nav-links">
-                <a href="index.html">← Seguir Comprando</a>
-                <a href="cart.html" class="cart-icon-container">
-                    🛒 <span id="cart-count" class="cart-badge">0</span>
-                </a>
-            </div>
+            <a href="index.html">← Seguir Comprando</a>
         </nav>
     </header>
 
     <div class="cart-page-container">
-        
         <div class="cart-content">
-            <h2 style="color:var(--primary);">Tu Carrito de Compras</h2>
-            <div id="cart-items-container" class="cart-items">
-                </div>
+            <h2>Tu Carrito</h2>
+            <div id="cart-items-container"></div>
         </div>
-
-        <div class="cart-summary">
-            <h3 style="margin-top:0;">Resumen del Pedido</h3>
-            
-            <div class="summary-row">
-                <span>Subtotal</span>
-                <span id="subtotal">Calculando...</span>
-            </div>
-            <div class="summary-row">
-                <span>Envío</span>
-                <span>15 Bs.</span>
-            </div>
-            
-            <div class="total-row">
-                <span>TOTAL</span>
-                <span id="cart-total">0 Bs.</span>
-            </div>
-
-            <button class="btn-checkout" onclick="alert('¡Gracias por tu compra! (Esto es un prototipo)')">FINALIZAR COMPRA</button>
-            <p style="font-size:0.8rem; text-align:center; color:#888; margin-top:10px;">🔒 Pago seguro contra entrega</p>
+        <div class="cart-summary" style="background:white; padding:25px; border-radius:12px; height:fit-content;">
+            <h3>Resumen</h3>
+            <div style="display:flex; justify-content:space-between;"><span>Subtotal</span><span id="subtotal">0 Bs.</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>Envío</span><span>15 Bs.</span></div>
+            <hr>
+            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.2rem;"><span>TOTAL</span><span id="cart-total">0 Bs.</span></div>
+            <button class="btn-submit" onclick="window.location.href='checkout.html'">FINALIZAR COMPRA</button>
         </div>
-
     </div>
-
 </body>
 </html>

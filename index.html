@@ -3,171 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renueva - Moda Circular con Garantía</title>
+    <title>Renueva - Moda Circular</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script> ```
+    <script src="script.js"></script>
 </head>
 <body>
-
     <header>
-        <nav>
-            <div class="logo">Re<span>Nuev</span>a</div>
-            <div class="nav-links">
-                <a href="cart.html" class="cart-icon-container">
+    <nav>
+        <div class="logo">Re<span>Nuev</span>a</div>
+        <div class="nav-links">
+            <a href="cart.html" class="cart-icon-container">
                 🛒 <span id="cart-count" class="cart-badge">0</span>
+            </a>
+            
+            <a href="index.html#catalogo">Comprar</a>
+            <a href="agendar-recojo.html">Vender</a>
+
+            <a href="login.html" id="nav-login" class="btn-cta">Ingresar</a>
+
+            <div id="nav-user-menu" style="display:none; align-items:center; gap:10px;">
+                <a href="dashboard.html" style="font-weight:bold; color:var(--primary); display:flex; align-items:center;">
+                    <div style="width:30px; height:30px; background:var(--accent); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-right:5px; font-size:0.8rem;">👤</div>
+                    Hola, <span id="nav-username" style="margin-left:4px;">Usuario</span>
                 </a>
-    
-                <a href="#catalogo">Comprar Ropa</a>
-                <a href="#vender">Vender mi Ropa</a>
-                
-                <a href="dashboard.html" class="btn-login">👤 Ver mi Ropa</a>
-                
-                <a href="#catalogo" class="btn-cta">Ver Tienda</a>
+                <a href="#" onclick="logout()" style="font-size:0.85rem; color:#888; text-decoration:underline;">(Salir)</a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
     <section class="hero">
         <div class="hero-content">
             <h1>Moda de Segunda Mano,<br>Calidad de Primera</h1>
-            <p>Nosotros recogemos, lavamos, reparamos y vendemos tu ropa.<br>Compra con confianza, vende sin esfuerzo.</p>
-            <a href="#vender" class="btn-cta" style="background: white; color: var(--primary) !important;">Quiero Vender (Agendar Recogida)</a>
+            <p>Dale una segunda vida a tu estilo. Recogemos, lavamos y vendemos.</p>
+            <a href="agendar-recojo.html" class="btn-cta" style="background: white; color: var(--primary) !important;">Quiero Vender</a>
         </div>
     </section>
 
-    <section class="process">
-        <h2>Nuestro Proceso de Calidad Certificada</h2>
-        <div class="steps-grid">
-            <div class="step-card">
-                <span class="icon">🚛</span>
-                <h3>1. Recogida a Domicilio</h3>
-                <p>Te enviamos una bolsa, tú la llenas y nosotros pasamos a buscarla. Sin salir de casa.</p>
-            </div>
-            <div class="step-card">
-                <span class="icon">🧵</span>
-                <h3>2. Mantenimiento & Spa</h3>
-                <p>Lavamos, planchamos y reparamos. <strong>Tu ropa queda como nueva.</strong></p>
-            </div>
-            <div class="step-card">
-                <span class="icon">📸</span>
-                <h3>3. Foto y Venta</h3>
-                <p>Tomamos fotos profesionales y publicamos. Cuando se vende, recibes tu dinero.</p>
-            </div>
+    <div class="filter-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar prenda, marca o color...">
         </div>
-    </section>
-
-    <section id="catalogo" class="catalog">
-        <div class="section-header">
-            <h2>Recién llegados (Listos para envío)</h2>
-            <a href="#">Ver todo el inventario &rarr;</a>
+        <div class="filter-box">
+            <select id="categoryFilter">
+                <option value="all">Todas las Categorías</option>
+                <option value="superior">Partes Superiores</option>
+                <option value="inferior">Pantalones / Faldas</option>
+                <option value="vestidos">Vestidos / Enterizos</option>
+                <option value="abrigos">Abrigos / Chaquetas</option>
+                <option value="zapatos">Calzado</option>
+            </select>
         </div>
+        <div class="filter-box">
+            <select id="sortFilter">
+                <option value="relevant">Relevancia</option>
+                <option value="price-asc">Precio: Bajo a Alto</option>
+                <option value="price-desc">Precio: Alto a Bajo</option>
+                <option value="newest">Más Recientes</option>
+            </select>
+        </div>
+        <div id="resultsCount" class="results-count">Mostrando todas las prendas</div>
+    </div>
 
+    <section id="catalogo" class="catalog" style="padding-top: 0;">
         <div class="product-grid">
             
-            <div class="product-card">
-                <div class="product-img" 
-                     style="background-image: url('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'); cursor: pointer;"
-                     onclick="viewProduct('Camisa Lino Blanca', 120, 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', 'ZARA - Talla M', '9/10 Excelente', 'Lavado Industrial + Botón Repuesto')">
-                    <span class="badge">✨ Lavado y Planchado</span>
+            <div class="product-card" data-name="Camisa Lino Blanca Zara" data-category="superior" data-price="120">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=500'); cursor:pointer;"
+                     onclick="viewProduct('Camisa Lino', 120, 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=500', 'ZARA - M', '9/10 Excelente', 'Lavado Industrial')">
+                    <span class="badge">✨ Lavado</span>
                 </div>
                 <div class="product-info">
                     <span class="product-cat">ZARA - Talla M</span>
-                    <span class="product-price">120 Bs.</span>
-                    <h3 style="cursor: pointer;" onclick="viewProduct('Camisa Lino Blanca', 120, 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', 'ZARA - Talla M', '9/10 Excelente', 'Lavado Industrial + Botón Repuesto')">Camisa Lino Blanca</h3>
-                    <p style="font-size: 0.8rem; color: green; margin:0;">✔ Botón repuesto por expertos</p>
-                    <button class="btn-add" onclick="addToCart('Camisa Lino Blanca', 120, 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">Añadir al Carrito</button>
+                    <h3>Camisa Lino Blanca</h3>
+                    <span class="product-price" style="display:block; font-weight:bold; margin-bottom:10px; color:var(--accent);">120 Bs.</span>
+                    <button class="btn-add" onclick="addToCart('Camisa Lino', 120, 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=500')">Añadir</button>
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="product-img" 
-                     style="background-image: url('https://images.unsplash.com/photo-1551028919-383718b93651?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'); cursor: pointer;"
-                     onclick="viewProduct('Chaqueta Denim', 180, 'https://images.unsplash.com/photo-1551028919-383718b93651?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', 'H&M - Talla S', '10/10 Como Nuevo', 'Higienización Profunda')">
-                    <span class="badge">💎 Como Nuevo</span>
+           
+
+            <div class="product-card" data-name="Vestido Floral Forever 21" data-category="vestidos" data-price="140">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=500'); cursor:pointer;"
+                     onclick="viewProduct('Vestido Floral', 140, 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=500', 'FOREVER 21 - M', '10/10 Con Etiqueta', 'Inspección')">
+                    <span class="badge" style="background:#27ae60; color:white;">🏷️ Con Etiqueta</span>
                 </div>
                 <div class="product-info">
-                    <span class="product-cat">H&M - Talla S</span>
-                    <span class="product-price">180 Bs.</span>
-                    <h3 style="cursor: pointer;" onclick="viewProduct('Chaqueta Denim', 180, 'https://images.unsplash.com/photo-1551028919-383718b93651?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', 'H&M - Talla S', '10/10 Como Nuevo', 'Higienización Profunda')">Chaqueta Denim</h3>
-                    <p style="font-size: 0.8rem; color: green; margin:0;">✔ Sin manchas ni olores</p>
-                    <button class="btn-add" onclick="addToCart('Chaqueta Denim', 180, 'https://images.unsplash.com/photo-1551028919-383718b93651?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">Añadir al Carrito</button>
+                    <span class="product-cat">FOREVER 21 - Talla M</span>
+                    <h3>Vestido Floral Verano</h3>
+                    <span class="product-price" style="display:block; font-weight:bold; margin-bottom:10px; color:var(--accent);">140 Bs.</span>
+                    <button class="btn-add" onclick="addToCart('Vestido Floral', 140, 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=500')">Añadir</button>
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="product-img" 
-                     style="background-image: url('https://images.unsplash.com/photo-1589810636490-ce065e9d2243?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'); cursor: pointer;"
-                     onclick="viewProduct('Jeans Clásicos', 200, 'https://images.unsplash.com/photo-1589810636490-ce065e9d2243?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', 'LEVIS - Talla 32', '8/10 Restaurado', 'Ruedo reparado + Planchado Vapor')">
+            <div class="product-card" data-name="Jeans Levis 501 Azul" data-category="inferior" data-price="210">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500'); cursor:pointer;"
+                     onclick="viewProduct('Jeans Levis 501', 210, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500', 'LEVIS - 32', '8/10 Restaurado', 'Ruedo reparado')">
                     <span class="badge">♻ Restaurado</span>
                 </div>
                 <div class="product-info">
                     <span class="product-cat">LEVI'S - Talla 32</span>
-                    <span class="product-price">200 Bs.</span>
-                    <h3 style="cursor: pointer;" onclick="viewProduct('Jeans Clásicos', 200, 'https://images.unsplash.com/photo-1589810636490-ce065e9d2243?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', 'LEVIS - Talla 32', '8/10 Restaurado', 'Ruedo reparado + Planchado Vapor')">Jeans Clásicos</h3>
-                    <p style="font-size: 0.8rem; color: green; margin:0;">✔ Ruedo reparado</p>
-                    <button class="btn-add" onclick="addToCart('Jeans Clásicos', 200, 'https://images.unsplash.com/photo-1589810636490-ce065e9d2243?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">Añadir al Carrito</button>
+                    <h3>Jeans Clásicos 501</h3>
+                    <span class="product-price" style="display:block; font-weight:bold; margin-bottom:10px; color:var(--accent);">210 Bs.</span>
+                    <button class="btn-add" onclick="addToCart('Jeans Levis', 210, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500')">Añadir</button>
                 </div>
             </div>
-            
-            <div class="product-card">
-                <div class="product-img" 
-                     style="background-image: url('https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'); cursor: pointer;"
-                     onclick="viewProduct('Blusa Floral', 85, 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', 'FOREVER 21 - Talla L', '10/10 Impecable', 'Lavado Delicado')">
-                    <span class="badge">✨ Impecable</span>
+
+            <div class="product-card" data-name="Sweater Tejido Beige Gap" data-category="superior" data-price="90">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=500'); cursor:pointer;"
+                     onclick="viewProduct('Sweater Tejido', 90, 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=500', 'GAP - L', '9/10 Excelente', 'Lavado Suave')">
+                    <span class="badge">❄️ Invierno</span>
                 </div>
                 <div class="product-info">
-                    <span class="product-cat">FOREVER 21 - Talla L</span>
-                    <span class="product-price">85 Bs.</span>
-                    <h3 style="cursor: pointer;" onclick="viewProduct('Blusa Floral', 85, 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', 'FOREVER 21 - Talla L', '10/10 Impecable', 'Lavado Delicado')">Blusa Floral</h3>
-                    <p style="font-size: 0.8rem; color: green; margin:0;">✔ Higienizado Profesional</p>
-                    <button class="btn-add" onclick="addToCart('Blusa Floral', 85, 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">Añadir al Carrito</button>
+                    <span class="product-cat">GAP - Talla L</span>
+                    <h3>Sweater Tejido Beige</h3>
+                    <span class="product-price" style="display:block; font-weight:bold; margin-bottom:10px; color:var(--accent);">90 Bs.</span>
+                    <button class="btn-add" onclick="addToCart('Sweater Tejido', 90, 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=500')">Añadir</button>
                 </div>
             </div>
 
-        </div>
-    </section>
-
-    <section id="vender" class="seller-section">
-        <h2>Libera espacio y gana dinero</h2>
-        <p>Agenda la recogida de tu bolsa. Nosotros nos encargamos del resto.</p>
-        
-        <div class="form-container">
-            <h3 style="color:var(--primary); margin-top:0;">Solicitar Recolección</h3>
-            <div style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
-    ¿Ya enviaste ropa? <a href="dashboard.html" style="color: var(--primary); font-weight: bold; text-decoration: underline;">Ver estado de mi envío</a>
-</div>
-            <form onsubmit="event.preventDefault(); alert('¡Solicitud enviada! Te contactaremos pronto.');">
-                
-                <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" placeholder="Ej. Juan Pérez" required>
+            <div class="product-card" data-name="Blazer Negro Ejecutivo Zara" data-category="abrigos" data-price="250">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=500'); cursor:pointer;"
+                     onclick="viewProduct('Blazer Negro', 250, 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=500', 'ZARA - S', '10/10 Impecable', 'Limpieza Seco')">
+                    <span class="badge">👔 Formal</span>
                 </div>
-
-                <div class="form-group">
-                    <label>WhatsApp de Contacto</label>
-                    <input type="tel" placeholder="Ej. 70012345" required>
+                <div class="product-info">
+                    <span class="product-cat">ZARA - Talla S</span>
+                    <h3>Blazer Negro Ejecutivo</h3>
+                    <span class="product-price" style="display:block; font-weight:bold; margin-bottom:10px; color:var(--accent);">250 Bs.</span>
+                    <button class="btn-add" onclick="addToCart('Blazer Negro', 250, 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=500')">Añadir</button>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label>Ubicación</label>
-                    <select>
-                        <option>Zona Norte (1er - 4to Anillo)</option>
-                        <option>Zona Sur</option>
-                        <option>Centro</option>
-                        <option>Doble Vía La Guardia</option>
-                    </select>
+            <div class="product-card" data-name="Tenis Adidas Urbanos" data-category="zapatos" data-price="300">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=500'); cursor:pointer;"
+                     onclick="viewProduct('Tenis Adidas', 300, 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=500', 'Adidas - 39', '8/10 Uso Moderado', 'Limpieza Suela')">
+                    <span class="badge">👟 Urbano</span>
                 </div>
-
-                <div class="form-group">
-                    <label>Cantidad aprox. de prendas</label>
-                    <input type="number" placeholder="Ej. 15" required>
+                <div class="product-info">
+                    <span class="product-cat">Adidas - Talla 39</span>
+                    <h3>Tenis Urbanos Blancos</h3>
+                    <span class="product-price" style="display:block; font-weight:bold; margin-bottom:10px; color:var(--accent);">300 Bs.</span>
+                    <button class="btn-add" onclick="addToCart('Tenis Adidas', 300, 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=500')">Añadir</button>
                 </div>
+            </div>
 
-                <button type="submit" class="btn-submit">Enviar Solicitud</button>
-            </form>
+            <div class="product-card" data-name="Falda Cuero Mango" data-category="inferior" data-price="150">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=500'); cursor:pointer;"
+                     onclick="viewProduct('Falda Cuero', 150, 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=500', 'Mango - 36', '9/10 Excelente', 'Hidratación Cuero')">
+                    <span class="badge">✨ Tendencia</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">Mango - Talla 36</span>
+                    <h3>Falda Efecto Cuero</h3>
+                    <span class="product-price" style="display:block; font-weight:bold; margin-bottom:10px; color:var(--accent);">150 Bs.</span>
+                    <button class="btn-add" onclick="addToCart('Falda Cuero', 150, 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=500')">Añadir</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="Polera Nike Básica" data-category="superior" data-price="80">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=500'); cursor:pointer;"
+                     onclick="viewProduct('Polera Nike', 80, 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=500', 'Nike - M', '9/10 Buen Estado', 'Lavado')">
+                    <span class="badge">🏃 Deportivo</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">Nike - Talla M</span>
+                    <h3>Polera Básica Blanca</h3>
+                    <span class="product-price" style="display:block; font-weight:bold; margin-bottom:10px; color:var(--accent);">80 Bs.</span>
+                    <button class="btn-add" onclick="addToCart('Polera Nike', 80, 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=500')">Añadir</button>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 ReNueva - Startup de Moda Circular en Bolivia.</p>
-        <p>Proyecto Académico para Producción
+        <p>&copy; 2026 ReNueva - Startup de Moda Circular.</p>
+        <div style="margin-top:10px;">
+            <a href="admin-panel.html" style="color:#666; font-size:0.8rem; margin:0 10px;">Acceso Admin</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pago - ReNueva</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script> 
+    <style>
+        /* --- ESTILOS ESPECÍFICOS DE LA PASARELA --- */
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        /* Selector de Método de Pago (Tipo Tabs) */
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .method-card {
+            flex: 1;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            opacity: 0.7;
+        }
+
+        .method-card:hover { border-color: #ddd; }
+        .method-card.active {
+            border-color: var(--accent);
+            background-color: #f0fdf4;
+            opacity: 1;
+            font-weight: bold;
+            color: var(--accent);
+            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.1);
+        }
+
+        .method-icon { font-size: 1.5rem; display: block; margin-bottom: 5px; }
+
+        /* SECCIÓN QR (Estilo Meru/Binance) */
+        .qr-container {
+            text-align: center;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 20px;
+            animation: fadeIn 0.5s;
+        }
+
+        .qr-timer {
+            background: #ffebee;
+            color: #c62828;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .qr-code-img {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .qr-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        /* SECCIÓN TARJETA */
+        .card-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            animation: fadeIn 0.5s;
+        }
+
+        .card-icons { display: flex; gap: 10px; margin-bottom: 15px; justify-content: flex-end; }
+        .card-icon { height: 25px; opacity: 0.5; }
+        .card-icon.active { opacity: 1; }
+
+        /* Resumen Lateral */
+        .order-summary {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .summary-item {
+            display: flex; justify-content: space-between;
+            margin-bottom: 15px; border-bottom: 1px dashed #eee; padding-bottom: 10px; font-size: 0.9rem;
+        }
+
+        .summary-total {
+            margin-top: 20px; padding-top: 20px; border-top: 2px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        @keyframes fadeIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+        
+        /* Ocultar secciones por defecto */
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Re<span>Nuev</span>a</div>
+            <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:0.8rem; color:#888;">🔒 Checkout Seguro 256-bit SSL</span>
+                <a href="cart.html" style="font-size: 0.9rem; font-weight:bold;">Cancelar</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-container" style="max-width:1100px; margin:40px auto; padding:0 20px;">
+        
+        <div class="checkout-grid">
+            
+            <div>
+                <h2 style="color:var(--primary); margin-bottom:20px;">Método de Pago</h2>
+                
+                <div class="payment-methods">
+                    <div class="method-card active" onclick="selectMethod('qr')" id="tab-qr">
+                        <span class="method-icon">📱</span>
+                        QR Simple / Yape
+                    </div>
+                    <div class="method-card" onclick="selectMethod('card')" id="tab-card">
+                        <span class="method-icon">💳</span>
+                        Tarjeta Débito/Crédito
+                    </div>
+                </div>
+
+                <div id="qr-section" class="qr-container">
+                    <div class="qr-timer">⏱️ El código expira en <span id="timer">15:00</span></div>
+                    <p style="margin:0; color:#666;">Escanea desde tu app de banco</p>
+                    
+                    <div class="qr-amount" id="qr-amount-display">0.00 Bs.</div>
+                    
+                    <img src="" id="dynamic-qr" class="qr-code-img" alt="QR de Pago">
+                    
+                    <div style="margin-top:20px; font-size:0.9rem; color:#555;">
+                        <p>1. Abre tu app (BNB, Mercantil, Yape, etc.)</p>
+                        <p>2. Escanea el código</p>
+                        <p>3. El pago se validará automáticamente</p>
+                    </div>
+
+                    <button class="btn-submit" onclick="simulateValidation('qr')" style="margin-top:20px; background-color: var(--accent);">
+                        ✅ YA REALICÉ EL PAGO
+                    </button>
+                </div>
+
+                <div id="card-section" class="card-container hidden">
+                    <div class="card-icons">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" class="card-icon active" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="card-icon active" alt="Mastercard">
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); simulateValidation('card');">
+                        <div class="input-group">
+                            <label>Titular de la Tarjeta</label>
+                            <input type="text" placeholder="Como aparece en la tarjeta" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Número de Tarjeta</label>
+                            <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                        </div>
+
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                            <div class="input-group">
+                                <label>Vencimiento</label>
+                                <input type="text" placeholder="MM/AA" maxlength="5" required>
+                            </div>
+                            <div class="input-group">
+                                <label>CVV</label>
+                                <input type="password" placeholder="123" maxlength="3" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit" style="margin-top:10px;">PAGAR AHORA</button>
+                    </form>
+                </div>
+
+                <div style="margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
+                    <h3 style="font-size:1rem;">📍 Enviando a:</h3>
+                    <div style="background:white; border:1px solid #ddd; padding:15px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong>Casa</strong> <span style="color:#666;">- Av. Banzer 4to Anillo...</span>
+                        </div>
+                        <a href="#" style="color:var(--accent); font-size:0.9rem;">Cambiar</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="order-summary">
+                <h3 style="margin-top: 0;">Resumen del Pedido</h3>
+                <div id="order-items-list"></div>
+                
+                <div class="summary-item" style="border-bottom: none; margin-top: 20px;">
+                    <span>Subtotal</span>
+                    <span id="summary-subtotal">0 Bs.</span>
+                </div>
+                <div class="summary-item" style="border-bottom: none;">
+                    <span>Envío</span>
+                    <span>15 Bs.</span>
+                </div>
+                <div class="summary-total">
+                    <span>TOTAL</span>
+                    <span id="summary-total" style="font-size: 1.5rem; color: var(--primary); font-weight: 800;">0 Bs.</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let totalAmount = 0;
+        let countdown;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadOrderData();
+            startTimer(15 * 60); // 15 minutos en segundos
+            
+            // Formatear input de tarjeta (Espacios automáticos)
+            const cardInput = document.getElementById('card-number');
+            cardInput.addEventListener('input', function (e) {
+                e.target.value = e.target.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim();
+            });
+        });
+
+        // 1. CARGAR DATOS DEL CARRITO
+        function loadOrderData() {
+            const cart = JSON.parse(localStorage.getItem('myCart')) || [];
+            if (cart.length === 0) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const container = document.getElementById('order-items-list');
+            let subtotal = 0;
+            container.innerHTML = '';
+
+            cart.forEach(item => {
+                subtotal += item.price;
+                container.innerHTML += `
+                    <div class="summary-item">
+                        <span>${item.name}</span>
+                        <span>${item.price} Bs.</span>
+                    </div>`;
+            });
+
+            totalAmount = subtotal + 15;
+            document.getElementById('summary-subtotal').innerText = subtotal + ' Bs.';
+            document.getElementById('summary-total').innerText = totalAmount + ' Bs.';
+            document.getElementById('qr-amount-display').innerText = totalAmount + ' Bs.';
+
+            // Generar QR dinámico (Usa API real de QRServer)
+            // El QR contiene texto: "Pagar [Monto] a Renueva"
+            const qrData = `Pagar ${totalAmount}Bs a Renueva Compra ID-${Date.now()}`;
+            document.getElementById('dynamic-qr').src = 
+                `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}`;
+        }
+
+        // 2. CAMBIAR PESTAÑAS (QR vs TARJETA)
+        function selectMethod(method) {
+            // Actualizar Tabs
+            document.querySelectorAll('.method-card').forEach(el => el.classList.remove('active'));
+            document.getElementById(`tab-${method}`).classList.add('active');
+
+            // Mostrar/Ocultar Contenedores
+            if (method === 'qr') {
+                document.getElementById('qr-section').classList.remove('hidden');
+                document.getElementById('card-section').classList.add('hidden');
+            } else {
+                document.getElementById('qr-section').classList.add('hidden');
+                document.getElementById('card-section').classList.remove('hidden');
+            }
+        }
+
+        // 3. TEMPORIZADOR CUENTA REGRESIVA
+        function startTimer(duration) {
+            let timer = duration, minutes, seconds;
+            const display = document.getElementById('timer');
+            
+            countdown = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(countdown);
+                    display.textContent = "EXPIRADO";
+                    document.getElementById('dynamic-qr').style.opacity = "0.2";
+                    alert("El código QR ha expirado. Recarga la página.");
+                }
+            }, 1000);
+        }
+
+        // 4. SIMULAR PROCESO DE PAGO (LOADING)
+        function simulateValidation(method) {
+            const btn = event.target; // El botón que se clickeó
+            const originalText = btn.innerText;
+            
+            // Estado de carga
+            btn.disabled = true;
+            btn.innerHTML = method === 'qr' ? "🔍 Verificando transferencia..." : "🔄 Procesando tarjeta...";
+            btn.style.opacity = "0.7";
+
+            setTimeout(() => {
+                // Éxito
+                localStorage.removeItem('myCart'); // Vaciar carrito
+                
+                // Overlay de éxito bonito
+                document.body.innerHTML += `
+                    <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:flex; justify-content:center; align-items:center; z-index:9999;">
+                        <div style="background:white; padding:40px; border-radius:20px; text-align:center; animation:popIn 0.5s;">
+                            <div style="font-size:4rem; margin-bottom:10px;">🎉</div>
+                            <h2 style="color:var(--primary);">¡Pago Exitoso!</h2>
+                            <p>Hemos recibido tus ${totalAmount} Bs.</p>
+                            <p style="color:#666; font-size:0.9rem;">Te enviamos el recibo a tu correo.</p>
+                            <button onclick="window.location.href='dashboard.html'" class="btn-submit" style="margin-top:20px;">VER MI PEDIDO</button>
+                        </div>
+                    </div>
+                    <style>@keyframes popIn { from{transform:scale(0.8); opacity:0;} to{transform:scale(1); opacity:1;} }</style>
+                `;
+            }, 3000); // 3 segundos de espera "falsa"
+        }
+    </script>
+</body>
+</html>

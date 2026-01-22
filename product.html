@@ -8,46 +8,25 @@
     <script src="script.js"></script>
 </head>
 <body>
-
     <header>
         <nav>
             <div class="logo">Re<span>Nuev</span>a</div>
-            <div class="nav-links">
-                <a href="index.html">← Volver al Catálogo</a>
-                <a href="cart.html" class="cart-icon-container">
-                    🛒 <span id="cart-count" class="cart-badge">0</span>
-                </a>
-            </div>
+            <a href="cart.html" class="cart-icon-container">🛒 <span id="cart-count" class="cart-badge">0</span></a>
         </nav>
     </header>
-
-    <div class="detail-container">
-        <div id="detail-img" class="detail-image"></div>
-
+    <div class="detail-container" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:1000px; margin:40px auto; padding:20px;">
+        <div id="detail-img" class="detail-image" style="height:400px; background-color:#eee; border-radius:10px; background-size:cover;"></div>
         <div class="detail-info">
-            <span id="detail-category" class="detail-meta">Categoría</span>
-            <h1 id="detail-name">Cargando...</h1>
-            <span id="detail-price" class="detail-price">-- Bs.</span>
-
-            <p style="line-height: 1.8; color: #555;">
-                Esta prenda ha pasado por nuestro riguroso proceso de selección y mantenimiento. 
-                Garantizamos que está limpia, desinfectada y lista para su uso inmediato.
-            </p>
-
-            <div class="production-history">
-                <h4>🛠️ Informe de Mantenimiento</h4>
-                <p><strong>Estado Visual:</strong> <span id="detail-condition">...</span></p>
-                <p><strong>Trabajo Realizado:</strong> <span id="detail-repairs" style="color:var(--accent); font-weight:bold;">...</span></p>
+            <span id="detail-category" style="color:#666; font-size:0.9rem; text-transform:uppercase;">Categoría</span>
+            <h1 id="detail-name" style="font-size:2.5rem; color:var(--primary);">Cargando...</h1>
+            <span id="detail-price" style="font-size:2rem; color:var(--accent); font-weight:bold;">-- Bs.</span>
+            <div style="background:#f8f9fa; padding:20px; border-left:4px solid var(--accent); margin:20px 0;">
+                <p><strong>Estado:</strong> <span id="detail-condition">...</span></p>
+                <p><strong>Mantenimiento:</strong> <span id="detail-repairs">...</span></p>
             </div>
-
-            <button id="detail-add-btn" class="btn-checkout" style="margin-top:0;">AÑADIR AL CARRITO</button>
-            
-            <div style="margin-top: 20px; font-size: 0.8rem; color: #888; display: flex; gap: 15px;">
-                <span>🚚 Envío en 24h</span>
-                <span>✅ Garantía de Devolución</span>
-            </div>
+            <button id="detail-add-btn" class="btn-submit">AÑADIR AL CARRITO</button>
+            <a href="index.html" style="display:block; margin-top:20px; text-decoration:underline;">← Volver al catálogo</a>
         </div>
     </div>
-
 </body>
 </html>

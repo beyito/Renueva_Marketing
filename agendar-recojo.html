@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vender - Renueva</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header><nav><div class="logo">Re<span>Nuev</span>a</div><a href="index.html">Volver</a></nav></header>
+    <div class="hero" style="height:30vh;"><h1>Agenda tu Recolección</h1></div>
+    <div class="form-container" style="margin-top:-50px; position:relative;">
+        <form onsubmit="event.preventDefault(); showToast('Recolección Agendada', 'success'); setTimeout(()=>window.location.href='dashboard.html', 2000);">
+            <label>Fecha y Hora</label>
+            <input type="datetime-local" required>
+            <label>Cantidad de Prendas (Mín 10)</label>
+            <input type="number" min="10" placeholder="Ej: 15" required>
+            <button type="submit" class="btn-submit">CONFIRMAR</button>
+        </form>
+    </div>
+</body>
+</html>
